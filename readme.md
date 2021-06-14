@@ -1,4 +1,7 @@
 # Evo Royal TA
+This is a modified version of the official Royal Time Attack mode for Trackmania. It fixes a few things that worked in normal Time Attack but does not work in Royal Time Attack.
+
+The [EvoSC](https://github.com/EvoTM/EvoSC) controller is officially compatible with this custom mode if you'd like to have local records and server administration tools.
 
 ## Why?
 The official Royal TA mode has some issues like not reporting times properly to XMLRPC and dynamic time limit not working. This modified version attempts to fix several of these issues.
