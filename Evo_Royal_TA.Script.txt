@@ -4,7 +4,7 @@
 #Extends "Libs/Nadeo/TMNext/TrackMania/Modes/TMNextBase.Script.txt"
 
 #Const CompatibleMapTypes	"TrackMania\\TM_Royal,TM_Royal"
-#Const Version						"2021-06-02-evo0.2.0"
+#Const Version						"2021-06-02-evo0.2.1"
 #Const ScriptName					"Evo Royal TA"
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
@@ -22,7 +22,7 @@
 // Settings
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
 #Setting S_TimeLimit 150 as _("Time limit") //< Time limit before going to the next map
-#Setting S_ScriptEnvironment "development"
+#Setting S_ScriptEnvironment "production" as _("Script Environment")
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
 // Constants
