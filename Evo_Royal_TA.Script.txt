@@ -4,7 +4,7 @@
 #Extends "Libs/Nadeo/TMNext/TrackMania/Modes/TMNextBase.Script.txt"
 
 #Const CompatibleMapTypes	"TrackMania\\TM_Royal,TM_Royal"
-#Const Version						"2021-06-02-evo0.3.1"
+#Const Version						"2021-06-02-evo1.0.0"
 #Const ScriptName					"Evo Royal TA"
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
