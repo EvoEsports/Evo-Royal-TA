@@ -4,7 +4,7 @@
 #Extends "Libs/Nadeo/TMNext/TrackMania/Modes/TMNextBase.Script.txt"
 
 #Const CompatibleMapTypes	"TrackMania\\TM_Royal,TM_Royal"
-#Const Version						"2021-06-02-evo0.1"
+#Const Version						"2021-06-02-evo0.1.1"
 #Const ScriptName					"Evo_Royal_TA"
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
@@ -42,7 +42,7 @@
 // Callbacks
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
 #Const C_Callback_Royal_PlayerFinish "Royal.PlayerFinish"
-#Const C_Callback_Royal_PlayerFinishSegment "Royal.PlayerFinish.PlayerFinishSegment"
+#Const C_Callback_Royal_PlayerFinishSegment "Royal.PlayerFinishSegment"
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
 // Functions
@@ -55,10 +55,12 @@ Void XmlRpcSendRoyalPlayerFinish(CSmPlayer _Player, Integer _Time) {
 	XmlRpc::SendCallback(C_Callback_Royal_PlayerFinish, [Response]);
 }
 
-Void XmlRpcSendRoyalPlayerFinishSegment(CSmPlayer _Player, Integer _Time) {
+Void XmlRpcSendRoyalPlayerFinishSegment(CSmPlayer _Player, Integer _Time, Integer _SegmentCount) {
+	declare Integer CurrentSegment = (_SegmentCount - 1) % C_TotalSegments + 1;
 	declare Response = """{
 	"login": {{{XmlRpc::JsonGetText(_Player.User.Login)}}},
-	"racetime": {{{XmlRpc::JsonGetInteger(_Time)}}}
+	"racetime": {{{XmlRpc::JsonGetInteger(_Time)}}},
+	"segment": {{{XmlRpc::JsonGetInteger(CurrentSegment)}}}
 }""";
 	XmlRpc::SendCallback(C_Callback_Royal_PlayerFinishSegment, [Response]);
 }
@@ -89,7 +91,7 @@ Void CheckRoyalRacetime(CSmPlayer _Player, Integer _RaceTime, Integer _MapStartT
 		Log::Log("""Time spent: {{{MapTime}}}""");
 	}
 
-	XmlRpcSendRoyalPlayerFinishSegment(_Player, MapTime);
+	XmlRpcSendRoyalPlayerFinishSegment(_Player, MapTime, SegmentCount);
 }
 
 Void SetPlayerStartTime(CSmPlayer _Player) {
