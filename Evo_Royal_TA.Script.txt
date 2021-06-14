@@ -138,7 +138,8 @@ XmlRpc::RegisterCallback(C_Callback_Royal_PlayerFinish, """
 	[
 		{
 			"login": "player-login", // The login id of the player
-			"racetime" 12345 // the time the player took from first segment to last.
+			"racetime" 12345, // the time the player took from first segment to last.
+			"totalsegments": 1234 // the total number of segments the player has finished
 		}
 	]
 	```
@@ -155,7 +156,8 @@ XmlRpc::RegisterCallback(C_Callback_Royal_PlayerFinishSegment, """
 		{
 			"login": "player-login", // The login id of the player
 			"racetime" 12345 // the time the player took to the current segment
-			"segment": <n> // The current segment the player finished
+			"segment": <n> // The current segment the player finished where 1 <= n <= 5
+			"totalsegments": 1234 // the total number of segments the player has finished
 		}
 	]
 	```

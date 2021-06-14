@@ -24,7 +24,7 @@ The official Royal TA mode has some issues like not reporting times properly to 
                 <setting name="S_TimeLimit" type="integer" value="150" />
                 <setting name="S_ScriptEnvironment" type="string" value="production" />
         </mode_script_settings>
-        
+
         <startindex>0</startindex>
         <map><file>MyAwesomeRoyalMap.Map.Gbx</file></map>
 </playlist>
@@ -41,7 +41,8 @@ The official Royal TA mode has some issues like not reporting times properly to 
 	[
 		{
 			"login": "player-login", // The login id of the player
-			"racetime" 12345 // the time the player took from first segment to last.
+			"racetime" 12345, // the time the player took from first segment to last.
+			"totalsegments": 1234 // the total number of segments the player has finished
 		}
 	]
 	```
@@ -57,7 +58,8 @@ The official Royal TA mode has some issues like not reporting times properly to 
 		{
 			"login": "player-login", // The login id of the player
 			"racetime" 12345 // the time the player took to the current segment
-			"segment": <n> // The current segment the player finished
+			"segment": <n> // The current segment the player finished where 1 <= n <= 5
+			"totalsegments": 1234 // the total number of segments the player has finished
 		}
 	]
 	```
