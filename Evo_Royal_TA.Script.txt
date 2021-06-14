@@ -4,8 +4,8 @@
 #Extends "Libs/Nadeo/TMNext/TrackMania/Modes/TMNextBase.Script.txt"
 
 #Const CompatibleMapTypes	"TrackMania\\TM_Royal,TM_Royal"
-#Const Version						"2021-06-02-evo0.1.1"
-#Const ScriptName					"Evo_Royal_TA"
+#Const Version						"2021-06-02-evo0.2.0"
+#Const ScriptName					"Evo Royal TA"
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
 // Libraries
@@ -344,6 +344,15 @@ if (Now >= Map_NextEmptyArmorCheckTime) {
 		) {
 			Race::StopSkipScoresTable(Player);
 		}
+	}
+}
+
+// set the time limit if it has changed
+if (EndTime != StartTime + (S_TimeLimit * 1000)) {
+	if (S_TimeLimit > 0) {
+		EndTime = StartTime + (S_TimeLimit * 1000);
+	} else {
+		EndTime = -1;
 	}
 }
 
