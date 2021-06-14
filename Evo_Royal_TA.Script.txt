@@ -4,7 +4,7 @@
 #Extends "Libs/Nadeo/TMNext/TrackMania/Modes/TMNextBase.Script.txt"
 
 #Const CompatibleMapTypes	"TrackMania\\TM_Royal,TM_Royal"
-#Const Version						"2021-06-02-evo0.3.0"
+#Const Version						"2021-06-02-evo0.3.1"
 #Const ScriptName					"Evo Royal TA"
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
@@ -62,7 +62,7 @@ Void XmlRpcSendRoyalPlayerFinishSegment(CSmPlayer _Player, Integer _Time, Intege
 	"login": {{{XmlRpc::JsonGetText(_Player.User.Login)}}},
 	"racetime": {{{XmlRpc::JsonGetInteger(_Time)}}},
 	"segment": {{{XmlRpc::JsonGetInteger(CurrentSegment)}}},
-	"totalsegments": {{{XmlRpc::JsonGetInteger(_SegmentCount)}}},
+	"totalsegments": {{{XmlRpc::JsonGetInteger(_SegmentCount)}}}
 }""";
 	XmlRpc::SendCallback(C_Callback_Royal_PlayerFinishSegment, [Response]);
 }
