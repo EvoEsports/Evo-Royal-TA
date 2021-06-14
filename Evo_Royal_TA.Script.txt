@@ -4,7 +4,7 @@
 #Extends "Libs/Nadeo/TMNext/TrackMania/Modes/TMNextBase.Script.txt"
 
 #Const CompatibleMapTypes	"TrackMania\\TM_Royal,TM_Royal"
-#Const Version						"2021-06-02-evo0.2.1"
+#Const Version						"2021-06-02-evo0.3.0"
 #Const ScriptName					"Evo Royal TA"
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
@@ -22,7 +22,7 @@
 // Settings
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
 #Setting S_TimeLimit 150 as _("Time limit") //< Time limit before going to the next map
-#Setting S_ScriptEnvironment "production" as _("Script Environment")
+#Setting S_ScriptEnvironment "production"
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
 // Constants
@@ -47,10 +47,11 @@
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
 // Functions
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
-Void XmlRpcSendRoyalPlayerFinish(CSmPlayer _Player, Integer _Time) {
+Void XmlRpcSendRoyalPlayerFinish(CSmPlayer _Player, Integer _Time, Integer _TotalSegments) {
 	declare Response = """{
 	"login": {{{XmlRpc::JsonGetText(_Player.User.Login)}}},
-	"racetime": {{{XmlRpc::JsonGetInteger(_Time)}}}
+	"racetime": {{{XmlRpc::JsonGetInteger(_Time)}}},
+	"totalsegments": {{{XmlRpc::JsonGetInteger(_TotalSegments)}}}
 }""";
 	XmlRpc::SendCallback(C_Callback_Royal_PlayerFinish, [Response]);
 }
@@ -60,7 +61,8 @@ Void XmlRpcSendRoyalPlayerFinishSegment(CSmPlayer _Player, Integer _Time, Intege
 	declare Response = """{
 	"login": {{{XmlRpc::JsonGetText(_Player.User.Login)}}},
 	"racetime": {{{XmlRpc::JsonGetInteger(_Time)}}},
-	"segment": {{{XmlRpc::JsonGetInteger(CurrentSegment)}}}
+	"segment": {{{XmlRpc::JsonGetInteger(CurrentSegment)}}},
+	"totalsegments": {{{XmlRpc::JsonGetInteger(_SegmentCount)}}},
 }""";
 	XmlRpc::SendCallback(C_Callback_Royal_PlayerFinishSegment, [Response]);
 }
@@ -86,7 +88,7 @@ Void CheckRoyalRacetime(CSmPlayer _Player, Integer _RaceTime, Integer _MapStartT
 """);
 
 	if (SegmentCount % C_TotalSegments == 0) {
-		XmlRpcSendRoyalPlayerFinish(_Player, MapTime);
+		XmlRpcSendRoyalPlayerFinish(_Player, MapTime, SegmentCount);
 		Log::Log("Player finished the whole map.");
 		Log::Log("""Time spent: {{{MapTime}}}""");
 	}
